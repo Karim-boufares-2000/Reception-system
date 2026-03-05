@@ -57,14 +57,48 @@ $users = mysqli_query($conn, "SELECT * FROM users");
     <title>إدارة النظام - لوحة التحكم</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .navbar { background: #2c3e50; color: white; }
-        .card { border: none; border-radius: 15px; }
-        .table { vertical-align: middle; }
-        .btn-action { border-radius: 8px; transition: 0.3s; }
-        .role-badge { font-size: 0.8rem; padding: 5px 10px; border-radius: 20px; }
-    </style>
+<style>
+
+body{
+background:#eef2f7;
+font-family:'Segoe UI';
+}
+
+.navbar{
+background:linear-gradient(45deg,#1e3c72,#2a5298);
+}
+
+.card{
+border-radius:15px;
+border:none;
+}
+
+.card:hover{
+transform:translateY(-3px);
+transition:.3s;
+}
+
+.table thead{
+background:#2a5298;
+color:white;
+}
+
+.btn{
+border-radius:8px;
+}
+
+.role-badge{
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+}
+
+.dashboard-title{
+font-weight:bold;
+color:#2a5298;
+}
+
+</style>
 </head>
 <body>
 
