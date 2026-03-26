@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مديرية الاستقبال | الرئيسية</title>
+    <title>بوابة المديرية | الرئيسية</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -93,6 +93,7 @@
     <div class="container">
         <a class="navbar-brand" href="#"> الاستقبال الرقمية</a>
         <a href="login.php" class="btn btn-outline-light">دخول </a>
+        
     </div>
 </nav>
 
@@ -101,7 +102,7 @@
         <h1 class="display-3 fw-bold">أهلاً بكم في بوابة المديرية</h1>
         <p class="lead">نظام إلكتروني متكامل لإدارة طلبات المقابلات وتسهيل التواصل مع المواطنين بكل شفافية.</p>
         <hr class="my-4 border-light">
-        <p>السرعة، الدقة، والخدمة المتميزة هي شعارنا.</p>
+        <p>السرعة، الدقة، والخدمة المتميزة.</p>
     </div>
 </div>
 

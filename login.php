@@ -1,5 +1,5 @@
 <?php
-// تفعيل إظهار الأخطاء لمعرفة السبب الحقيقي
+// تفعيل إظهار الأخطاء للتطوير
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,35 +8,50 @@ include('db.php');
 session_start();
 
 if (isset($_POST['login'])) {
-    $user = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['password']);
+    $user = $_POST['username'];
+    $pass = $_POST['password'];
 
-    // استعلام فحص المستخدم
-    $query = "SELECT * FROM users WHERE username='$user' AND password='$pass'";
-    $result = mysqli_query($conn, $query);
+    // 1. أضفنا حقل 'status' إلى الاستعلام
+    $stmt = $conn->prepare("SELECT id, full_name, password, role, status FROM users WHERE username = ?");
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (!$result) {
-        die("خطأ في قاعدة البيانات: " . mysqli_error($conn));
-    }
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
 
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['role'] = $row['role'];
-        $_SESSION['full_name'] = $row['full_name'];
+        // 2. التحقق من حالة الحساب أولاً
+        if ($row['status'] == 'inactive') {
+            $error = "عذراً، هذا الحساب معطل حالياً. يرجى مراجعة المسؤول.";
+        } 
+        // 3. إذا كان الحساب نشطاً، نتحقق من كلمة المرور
+        elseif (password_verify($pass, $row['password'])) {
+            
+            session_regenerate_id(true);
 
-        // توجيه المستخدم حسب الرتبة
-        if ($row['role'] == 'admin') {
-            header('Location: admin_dashboard.php');
-        } elseif ($row['role'] == 'receptionist') {
-            header('Location: receptionist_dashboard.php');
-        } elseif ($row['role'] == 'manager') {
-            header('Location: manager_dashboard.php');
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['full_name'] = $row['full_name'];
+
+            // التوجيه حسب الرتبة
+            if ($row['role'] == 'admin') {
+                header('Location: admin_dashboard.php');
+            } elseif ($row['role'] == 'receptionist') {
+                header('Location: receptionist_dashboard.php');
+            } elseif ($row['role'] == 'manager') {
+                header('Location: manager_dashboard.php');
+            }
+            $stmt->close();
+            exit(); 
+        } else {
+            // كلمة المرور خاطئة
+            $error = "اسم المستخدم أو كلمة المرور غير صحيحة";
         }
-        exit(); 
     } else {
+        // المستخدم غير موجود
         $error = "اسم المستخدم أو كلمة المرور غير صحيحة";
     }
+    $stmt->close();
 }
 ?>
 
