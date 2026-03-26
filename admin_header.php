@@ -18,10 +18,20 @@
 <body>
 <nav class="navbar navbar-expand-lg shadow mb-4">
     <div class="container">
-        <a class="navbar-brand text-white" href="#"><i class="fas fa-user-shield me-2"></i> لوحة تحكم المسؤول</a>
-        <div class="d-flex text-white">
-            <span>مرحباً، <?php echo $_SESSION['full_name']; ?></span>
-            <a href="logout.php" class="btn btn-sm btn-danger ms-3"><i class="fas fa-sign-out-alt"></i> خروج</a>
+        <a class="navbar-brand text-white" href="admin_dashboard.php">
+            <i class="fas fa-user-shield me-2"></i> لوحة تحكم المسؤول
+        </a>
+        <div class="d-flex align-items-center">
+            <a href="admin_profile.php" class="btn btn-sm btn-outline-light me-2 border-0">
+                <i class="fas fa-user-circle fa-lg me-1"></i> ملفي الشخصي
+            </a>
+            <span class="text-white-50 me-3">|</span>
+            <span class="text-white me-3 small">مرحباً، <?php echo $_SESSION['full_name']; ?></span>
+            <a href="logout.php" class="btn btn-sm btn-danger ms-2 shadow-sm">
+                <i class="fas fa-sign-out-alt"></i> خروج
+            </a>
         </div>
     </div>
 </nav>
+
+</body>
