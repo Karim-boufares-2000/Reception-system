@@ -7,8 +7,8 @@ $apps = mysqli_query($conn, "SELECT a.*, u.full_name FROM appointments a JOIN us
 ?>
 
 <div class="modal-header border-0 bg-white py-3 shadow-sm">
-    <div class="d-flex align-items-center">
-        <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-3">
+    <div class="d-flex align-items-center text-end">
+        <div class="bg-primary bg-opacity-10 p-2 rounded-circle ms-3">
             <i class="fas fa-user-shield text-primary fa-lg"></i>
         </div>
         <h5 class="modal-title fw-bold text-dark mb-0">
@@ -18,104 +18,74 @@ $apps = mysqli_query($conn, "SELECT a.*, u.full_name FROM appointments a JOIN us
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
-<div class="modal-body bg-light p-4">
-    <div class="row g-4 mb-4">
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-                <div class="card-body">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center">
-                        <i class="fas fa-info-circle text-primary me-2"></i> البيانات الشخصية
-                    </h6>
-                    <div class="small">
-                        <p class="mb-2 text-muted">الاسم الكامل:</p>
-                        <p class="fw-bold mb-3"><?php echo $citizen['first_name'].' '.$citizen['last_name']; ?></p>
-                        
-                        <p class="mb-2 text-muted">رقم الهاتف:</p>
-                        <p class="fw-bold mb-3 text-primary"><i class="fas fa-phone-alt me-1"></i> <?php echo $citizen['phone']; ?></p>
-                        
-                        <p class="mb-2 text-muted">رقم التعريف الوطني:</p>
-                        <p class="fw-bold mb-0"><code><?php echo $citizen['national_id']; ?></code></p>
-                    </div>
+<div class="modal-body bg-light p-4 text-end">
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body py-3 px-4">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <small class="text-muted d-block small">رقم الهاتف:</small>
+                    <span class="fw-bold text-primary"><?php echo $citizen['phone']; ?></span>
                 </div>
-            </div>
-        </div>
-        
-        <div class="col-md-8">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-                <div class="card-body">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center">
-                        <i class="fas fa-file-alt text-primary me-2"></i> معاينة أحدث وثيقة مرفقة
-                    </h6>
-                    <div class="bg-light rounded-3 overflow-hidden d-flex align-items-center justify-content-center" style="min-height: 350px;">
-                        <?php 
-                        $latest_file = mysqli_fetch_assoc(mysqli_query($conn, "SELECT files_path FROM appointments WHERE citizen_id='$id' AND files_path != '' ORDER BY created_at DESC LIMIT 1"));
-                        if($latest_file): 
-                            $file = $latest_file['files_path'];
-                            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                        ?>
-                            <?php if($ext == 'pdf'): ?>
-                                <embed src="<?php echo $file; ?>" type="application/pdf" width="100%" height="400px" class="rounded">
-                            <?php elseif(in_array($ext, ['jpg','png','jpeg','webp'])): ?>
-                                <img src="<?php echo $file; ?>" class="img-fluid shadow-sm rounded" style="max-height: 400px; object-fit: contain;">
-                            <?php else: ?>
-                                <div class="text-center p-5">
-                                    <i class="fas fa-file-word fa-4x text-muted mb-3"></i>
-                                    <p class="text-muted">ملف مستندات</p>
-                                    <a href="<?php echo $file; ?>" class="btn btn-primary rounded-pill px-4" download>تحميل الملف</a>
-                                </div>
-                            <?php endif; ?>
-                        <?php else: ?>
-                            <div class="text-center text-muted">
-                                <i class="fas fa-folder-open fa-3x mb-2 opacity-25"></i>
-                                <p>لا توجد وثائق مرفقة</p>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                <div class="col-md-4">
+                    <small class="text-muted d-block small">رقم التعريف:</small>
+                    <code class="fw-bold text-dark"><?php echo $citizen['national_id']; ?></code>
+                </div>
+                <div class="col-md-4 text-start">
+                    <span class="badge bg-primary rounded-pill px-3"><?php echo mysqli_num_rows($apps); ?> طلبات سابقة</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <h6 class="fw-bold text-dark mb-3"><i class="fas fa-list-ul text-primary me-2"></i> سجل المواعيد والوثائق المرفقة:</h6>
+
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-        <div class="card-header bg-white py-3">
-            <h6 class="fw-bold mb-0 text-dark">
-                <i class="fas fa-history text-primary me-2"></i> سجل المواعيد والطلبات السابقة
-            </h6>
-        </div>
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0 text-center">
-                <thead class="bg-light">
-                    <tr class="small text-uppercase text-muted">
-                        <th class="py-3">تاريخ الطلب</th>
-                        <th>المدير المعالج</th>
+                <thead class="bg-dark text-white">
+                    <tr class="small">
+                        <th class="py-3">التاريخ</th>
+                        <th>المدير</th>
                         <th class="text-end">السبب</th>
                         <th>الحالة</th>
-                        <th>الرد</th>
+                        <th>الوثيقة المرفقة</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php mysqli_data_seek($apps, 0); while($a = mysqli_fetch_assoc($apps)): ?>
-                    <tr class="small">
-                        <td class="text-muted"><?php echo date('Y-m-d', strtotime($a['created_at'])); ?></td>
-                        <td class="fw-bold text-dark"><?php echo $a['full_name']; ?></td>
-<td style="max-width:300px;">
-    <div style="max-height:100px; overflow:auto; white-space:normal;">
-        <small><?php echo nl2br(htmlspecialchars($a['message'])); ?></small>
-    </div>
-</td>                        <td>
-                            <?php 
-                            $status_arr = [
-                                'accepted' => ['bg-success', 'مقبول'],
-                                'rejected' => ['bg-danger', 'مرفوض'],
-                                'pending'  => ['bg-warning text-dark', 'انتظار']
-                            ];
-                            $curr = $status_arr[$a['status']] ?? ['bg-secondary', $a['status']];
-                            ?>
-                            <span class="badge <?php echo $curr[0]; ?> rounded-pill px-3"><?php echo $curr[1]; ?></span>
-                        </td>
-                        <td class="text-muted italic small"><?php echo $a['manager_response'] ?? '<span class="opacity-50">لا يوجد رد</span>'; ?></td>
-                    </tr>
-                    <?php endwhile; ?>
+                    <?php if (mysqli_num_rows($apps) > 0): ?>
+                        <?php while($a = mysqli_fetch_assoc($apps)): 
+                            $file = $a['files_path'];
+                            $ext = $file ? strtolower(pathinfo($file, PATHINFO_EXTENSION)) : '';
+                        ?>
+                        <tr>
+                            <td class="small text-muted"><?php echo date('Y-m-d', strtotime($a['created_at'])); ?></td>
+                            <td class="fw-bold small"><?php echo $a['full_name']; ?></td>
+                            <td class="text-end small" style="max-width: 250px;">
+                                <div class="text-truncate" title="<?php echo htmlspecialchars($a['message']); ?>">
+                                    <?php echo htmlspecialchars($a['message']); ?>
+                                </div>
+                            </td>
+                            <td>
+                                <?php 
+                                    $cl = ($a['status']=='accepted')?'success':(($a['status']=='rejected')?'danger':'warning text-dark');
+                                    $lbl = ($a['status']=='accepted')?'مقبول':(($a['status']=='rejected')?'مرفوض':'انتظار');
+                                ?>
+                                <span class="badge bg-<?php echo $cl; ?> rounded-pill shadow-sm" style="font-size: 10px;"><?php echo $lbl; ?></span>
+                            </td>
+                            <td>
+                                <?php if($file): ?>
+                                    <a href="<?php echo $file; ?>" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 shadow-sm fw-bold">
+                                        <i class="fas fa-eye me-1"></i> معاينة الوثيقة
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-muted small italic opacity-50">لا يوجد مرفق</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr><td colspan="5" class="py-5 text-muted small">لا توجد طلبات سابقة.</td></tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -123,5 +93,5 @@ $apps = mysqli_query($conn, "SELECT a.*, u.full_name FROM appointments a JOIN us
 </div>
 
 <div class="modal-footer border-0 bg-white">
-    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">إغلاق</button>
+    <button type="button" class="btn btn-secondary px-4 rounded-pill shadow-sm fw-bold" data-bs-dismiss="modal">إغلاق الملف</button>
 </div>
