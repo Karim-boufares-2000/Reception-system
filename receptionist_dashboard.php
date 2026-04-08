@@ -6,18 +6,95 @@
     <title>لوحة الاستقبال المتكاملة</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        .main-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .clickable-row { cursor: pointer; transition: 0.2s; }
-        .clickable-row:hover { background-color: #f1f8ff !important; }
+        body { 
+            background-color: #f8f9fa; 
+            font-family: 'Cairo', sans-serif; 
+        }
+
+        .main-card { 
+            border: none; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            background-color: #fff;
+        }
+
+        .clickable-row { 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+
+        .clickable-row:hover { 
+            background-color: #e8f5e9 !important; /* أخضر فاتح عند المرور */
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .table thead th {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+        }
+
+        .badge-status-accepted {
+            background-color: #28a745 !important;
+            color: #fff;
+        }
+
+        .badge-status-rejected {
+            background-color: #dc3545 !important;
+            color: #fff;
+        }
+
+        .badge-status-pending {
+            background-color: #ffc107 !important;
+            color: #212529;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+        }
     </style>
 </head>
 <body>
 
 <?php include('includes/reception_navbar.php'); ?>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row mb-4 align-items-center">
         <div class="col-md-4">
             <button class="btn btn-success shadow-sm py-2 px-4" data-bs-toggle="modal" data-bs-target="#addModal">

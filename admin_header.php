@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body{ background:#eef2f7; font-family:'Segoe UI'; }
-        .navbar{ background:linear-gradient(45deg,#1e3c72,#2a5298); }
+        .navbar{
+    background: linear-gradient(45deg, #0f8f45, #1ecf66) !important;
+}
         .card{ border-radius:15px; border:none; transition:.3s; }
         .card:hover{ transform:translateY(-3px); }
         .table thead{ background:#2a5298; color:white; }

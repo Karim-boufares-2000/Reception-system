@@ -12,14 +12,65 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('image/wilaya.jpg');
-            background-size: cover; background-position: center;
-            height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('image/wilaya.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
         }
-        .login-card { border-radius: 15px; backdrop-filter: blur(10px); background: rgba(255,255,255,0.9); }
-        .form-control { border-radius: 10px; padding: 12px; }
-        .btn-login { border-radius: 10px; font-weight: 600; transition: 0.3s; }
-        .btn-login:hover { transform: translateY(-2px); }
+
+        .login-card {
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .btn-login {
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ألوان إضافية */
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-outline-secondary {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-radius: 10px;
+        }
+
+        h3.fw-bold {
+            color: #155724;
+        }
     </style>
 </head>
 
@@ -30,12 +81,12 @@
             <div class="card login-card shadow-lg border-0">
                 <div class="card-body p-4">
                     <div class="text-center mb-4">
-                        <i class="fas fa-user-lock fa-3x text-primary mb-2"></i>
+                        <i class="fas fa-user-lock fa-3x text-success mb-2"></i>
                         <h3 class="fw-bold">دخول الموظفين</h3>
                     </div>
 
                     <?php if($error): ?>
-                        <div class="alert alert-danger py-2 small text-center"><?= $error ?></div>
+                        <div class="alert alert-danger py-2 small text-center"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
 
                     <form method="POST">

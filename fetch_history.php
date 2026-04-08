@@ -8,7 +8,7 @@ if (isset($error_message)) {
 }
 ?>
 
-<div class="modal-header bg-dark text-white border-0 shadow-sm">
+<div class="modal-header bg-dark text-white border-0 shadow-sm" >
     <div class="d-flex align-items-center">
         <div class="bg-primary rounded-circle p-2 ms-3 text-white">
             <i class="fas fa-folder-open"></i>
@@ -22,11 +22,11 @@ if (isset($error_message)) {
     <div class="card border-0 shadow-sm rounded-4 mb-4">
         <div class="card-body py-2 px-4">
             <div class="row align-items-center">
-                <div class="col-md-4 text-end">
+                <div class="col-md-4 text-start">
                     <small class="text-muted d-block">رقم الهوية:</small>
                     <span class="fw-bold"><?= $c['national_id']; ?></span>
                 </div>
-                <div class="col-md-4 text-end">
+                <div class="col-md-4 text-start">
                     <small class="text-muted d-block">رقم الهاتف:</small>
                     <span class="fw-bold text-primary"><?= $c['phone']; ?></span>
                 </div>
@@ -41,7 +41,7 @@ if (isset($error_message)) {
         <i class="fas fa-list-ul text-primary me-1"></i> اضغط على أي طلب لعرض التفاصيل:
     </h6>
     
-    <div class="accordion shadow-sm rounded-4 overflow-hidden" id="historyAccordion">
+    <div class="accordion shadow-sm rounded-4 overflow-hidden" id="historyAccordion" >
         <?php if ($total_requests > 0): $i = 0; ?>
             <?php while ($a = mysqli_fetch_assoc($app_query)): $i++; ?>
                 <div class="accordion-item border-0 border-bottom">
@@ -64,7 +64,7 @@ if (isset($error_message)) {
                     
                     <div id="collapse_<?= $i; ?>" class="accordion-collapse collapse" data-bs-parent="#historyAccordion">
                         <div class="accordion-body bg-white p-4">
-                            <div class="row g-4 text-end">
+                            <div class="row g-4 text-start">
                                 <div class="col-md-5 border-start">
                                     <label class="fw-bold text-primary small d-block mb-2">سبب الطلب:</label>
                                     <div class="p-3 bg-light rounded-3 mb-3 small"><?= nl2br(htmlspecialchars($a['message'])); ?></div>
@@ -76,7 +76,7 @@ if (isset($error_message)) {
                                 </div>
 
                                 <div class="col-md-7 text-center">
-                                    <label class="fw-bold text-secondary small d-block mb-2 text-end">الوثيقة المرفقة:</label>
+                                    <label class="fw-bold text-secondary small d-block mb-2 text-start">الوثيقة المرفقة:</label>
                                     <?php if ($a['files_path']): 
                                         $filePath = $a['files_path'];
                                         $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));

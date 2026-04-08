@@ -6,24 +6,42 @@
     <title>لوحة تحكم المدير - الطلبات</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/manager_style.css"> </head>
+    <style>
+        /* ألوان حديثة: أبيض + أخضر + أحمر */
+        body { background-color: #f9f9f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background-color: #ffffff; } 
+        .navbar .navbar-brand, .navbar .nav-link { color: #28a745 !important; }
+        .navbar .nav-link.active { font-weight: bold; color: #dc3545 !important; }
+        .breadcrumb { background-color: #ffffff; border-radius: 8px; }
+        .breadcrumb .active { color: #dc3545; }
+        .main-card { background-color: #ffffff; border-radius: 12px; }
+        .table thead { background-color: #28a745; color: #ffffff; }
+        .table tbody tr:hover { background-color: #e6f4ea; }
+        .btn-outline-danger { border-color: #dc3545; color: #dc3545; }
+        .btn-outline-danger:hover { background-color: #dc3545; color: #ffffff; }
+        .btn-success { background-color: #28a745; border-color: #28a745; color: #ffffff; }
+        .btn-success:hover { background-color: #218838; }
+    </style>
+</head>
 <body>
 
 <?php include('includes/manager_navbar.php'); ?>
 
 <div class="container mt-4">
+    <!-- نموذج البحث / الفلاتر -->
     <div class="row mb-4 justify-content-end">
         <div class="col-md-9">
             <?php include('includes/filter_form.php'); ?>
         </div>
     </div>
 
+    <!-- جدول الطلبات -->
     <div class="card main-card overflow-hidden shadow-sm">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0 text-center">
-                <thead class="table-dark">
+                <thead style=" background-color:#28a745 !important;">
                     <tr>
-                        <th class="text-end px-4">المواطن</th>
+                        <th >المواطن</th>
                         <th>رقم الهوية</th>
                         <th>تاريخ الطلب</th>
                         <th>الحالة</th>
@@ -43,11 +61,13 @@
         </div>
     </div>
 
+    <!-- التصفح / Pagination -->
     <?php include('includes/pagination.php'); ?>
 </div>
 
 <?php include('includes/manager_modals.php'); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/manager_scripts.js"></script> </body>
+<script src="js/manager_scripts.js"></script>
+</body>
 </html>
