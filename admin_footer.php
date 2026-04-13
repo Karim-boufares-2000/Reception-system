@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

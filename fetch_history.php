@@ -7,6 +7,8 @@ if (isset($error_message)) {
     exit;
 }
 ?>
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 
 <div class="modal-header bg-dark text-white border-0 shadow-sm" >
     <div class="d-flex align-items-center">

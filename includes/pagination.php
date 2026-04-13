@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <nav class="mt-4">
     <ul class="pagination justify-content-center">
         <?php for($i=1; $i<=$total_pages; $i++): ?>

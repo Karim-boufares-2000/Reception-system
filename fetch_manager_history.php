@@ -4,7 +4,8 @@
     <div class="alert alert-danger text-center p-4 m-3"><?= $error ?></div>
     <?php exit; ?>
 <?php endif; ?>
-
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <div class="modal-header bg-success text-white border-0 shadow-sm" >
     <div class="d-flex align-items-center">
         <div class="bg-white text-success rounded-circle p-2 ms-3">

@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <nav class="navbar navbar-expand-lg shadow-sm mb-4" style="background-color: #28a745;">
     <div class="container">
         <!-- شعار النظام -->

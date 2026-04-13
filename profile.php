@@ -1,6 +1,7 @@
 <?php require_once('profile_logic.php'); ?>
 <?php include('includes/manager_navbar.php'); ?>
-
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>

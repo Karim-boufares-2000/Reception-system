@@ -1,11 +1,18 @@
 <?php include('manager_logic.php'); ?>
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <title>لوحة تحكم المدير - الطلبات</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap RTL من الملفات المحلية -->
+    <link rel="stylesheet" href="assets/css/bootstrap.rtl.min.css">
+
+    <!-- FontAwesome محلي -->
+    <link rel="stylesheet" href="assets/css/all.min.css">
+
     <style>
         /* ألوان حديثة: أبيض + أخضر + أحمر */
         body { background-color: #f9f9f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -22,26 +29,25 @@
         .btn-success { background-color: #28a745; border-color: #28a745; color: #ffffff; }
         .btn-success:hover { background-color: #218838; }
     </style>
+
 </head>
 <body>
 
 <?php include('includes/manager_navbar.php'); ?>
 
 <div class="container mt-4">
-    <!-- نموذج البحث / الفلاتر -->
     <div class="row mb-4 justify-content-end">
         <div class="col-md-9">
             <?php include('includes/filter_form.php'); ?>
         </div>
     </div>
 
-    <!-- جدول الطلبات -->
     <div class="card main-card overflow-hidden shadow-sm">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0 text-center">
                 <thead style=" background-color:#28a745 !important;">
                     <tr>
-                        <th >المواطن</th>
+                        <th>المواطن</th>
                         <th>رقم الهوية</th>
                         <th>تاريخ الطلب</th>
                         <th>الحالة</th>
@@ -61,13 +67,15 @@
         </div>
     </div>
 
-    <!-- التصفح / Pagination -->
     <?php include('includes/pagination.php'); ?>
 </div>
 
 <?php include('includes/manager_modals.php'); ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap + JS محلي -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
 <script src="js/manager_scripts.js"></script>
+
 </body>
 </html>

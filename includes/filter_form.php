@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <form method="GET" class="row g-2 shadow-sm bg-white p-3 rounded-3 border border-light">
     <!-- حقل البحث -->
     <div class="col-md-5">

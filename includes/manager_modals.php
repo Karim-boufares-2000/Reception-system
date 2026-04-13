@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <!-- مودال عرض الملف الشخصي -->
 <div class="modal fade" id="profileModal" tabindex="-1">
     <div class="modal-dialog modal-xl">

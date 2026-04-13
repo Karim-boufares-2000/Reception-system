@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <div class="table-responsive">
     <table class="table table-hover align-middle mb-0 text-center">
         <thead class="table-dark">

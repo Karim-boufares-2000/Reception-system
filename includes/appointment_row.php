@@ -1,3 +1,5 @@
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <tr class="clickable-row shadow-sm" 
     onclick="viewFullProfile('<?php echo $row['national_id']; ?>')" 
     style="cursor:pointer; transition: background-color 0.2s;">

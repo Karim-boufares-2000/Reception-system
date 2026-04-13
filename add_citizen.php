@@ -1,4 +1,6 @@
 <?php include('db.php'); ?>
+<?php include 'includes/bootstrap.php'; ?>
+<?php include 'includes/icons.php'; ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
